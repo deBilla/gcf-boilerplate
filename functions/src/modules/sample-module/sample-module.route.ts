@@ -9,7 +9,7 @@ import {
 import configurations from "../../server-config/configurations";
 import {SampleModuleController} from "./sample-module.controller";
 import {validateRequest} from "../../core/middlewares/validate-request";
-import {bigqueryJobSchema} from "./dto/sample-module-request.dto";
+import {SampleModuleSchema} from "./dto/sample-module-request.dto";
 import {CustomRequest, FirebaseAdminAuthMiddleware} from "../../core/middlewares/admin-auth.middleware";
 
 const app = express();
@@ -19,7 +19,7 @@ app.use(FirebaseAdminAuthMiddleware);
 
 const moduleController = new SampleModuleController();
 
-app.post("/v1/", validateRequest(bigqueryJobSchema), async (req: CustomRequest, res) => {
+app.post("/v1/", validateRequest(SampleModuleSchema), async (req: CustomRequest, res) => {
   try {
     const bigqueryRequest = req.body;
     const uid = req.user?.uid;
