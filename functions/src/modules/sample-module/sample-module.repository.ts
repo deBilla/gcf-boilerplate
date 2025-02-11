@@ -1,19 +1,19 @@
 import {FirestoreRepository} from "../../core/firestore/firestore.base";
 import configurations from "../../server-config/configurations";
-import {ModuleEntity} from "./entities/<module>-job.entity";
+import {SampleModuleEntity} from "./entities/sample-module-job.entity";
 
-export class ModuleRepository extends FirestoreRepository<ModuleEntity> {
+export class SampleModuleRepository extends FirestoreRepository<SampleModuleEntity> {
   constructor() {
     super(configurations().firestore.testTable.dbName, configurations().firestore.testTable.name);
   }
 
   protected docToEntity(
     doc: FirebaseFirestore.DocumentSnapshot
-  ): ModuleEntity {
-    const metadata = new ModuleEntity({
+  ): SampleModuleEntity {
+    const metadata = new SampleModuleEntity({
       uuid: doc.get("uuid") || "",
       testField: doc.get("test_field") || "",
-    } as ModuleEntity);
+    } as SampleModuleEntity);
 
     return metadata;
   }

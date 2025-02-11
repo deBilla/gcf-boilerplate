@@ -1,3 +1,3 @@
 module.exports = {
-  module: require("./<module>/<module>.route"),
+  module: require("./sample-module/sample-module.route"),
 };

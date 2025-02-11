@@ -7,9 +7,9 @@ import {
   sendSuccessResponse,
 } from "../../core/models/response/response.model";
 import configurations from "../../server-config/configurations";
-import {ModuleController} from "./<module>.controller";
+import {SampleModuleController} from "./sample-module.controller";
 import {validateRequest} from "../../core/middlewares/validate-request";
-import {bigqueryJobSchema} from "./dto/<module>-request.dto";
+import {bigqueryJobSchema} from "./dto/sample-module-request.dto";
 import {CustomRequest, FirebaseAdminAuthMiddleware} from "../../core/middlewares/admin-auth.middleware";
 
 const app = express();
@@ -17,7 +17,7 @@ app.use(cors());
 
 app.use(FirebaseAdminAuthMiddleware);
 
-const moduleController = new ModuleController();
+const moduleController = new SampleModuleController();
 
 app.post("/v1/", validateRequest(bigqueryJobSchema), async (req: CustomRequest, res) => {
   try {
@@ -26,7 +26,7 @@ app.post("/v1/", validateRequest(bigqueryJobSchema), async (req: CustomRequest, 
 
     if (!uid) throw new Error("User ID not found !!!");
 
-    const payload = await moduleController.createModule(
+    const payload = await moduleController.createSampleModule(
       bigqueryRequest,
     );
 
@@ -73,7 +73,7 @@ app.delete("/v1/:uuid", async (req, res) => {
     const uuid = req.params.uuid;
 
     if (!uuid) throw new Error("UUID needed");
-    await moduleController.deleteModule(uuid);
+    await moduleController.deleteSampleModule(uuid);
 
     return sendSuccessResponse({
       type: ResponseType.HTTP,

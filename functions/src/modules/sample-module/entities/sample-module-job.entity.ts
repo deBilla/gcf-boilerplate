@@ -2,11 +2,11 @@ import {IEntity} from "../../../core/entity/entity.interface";
 import {v4 as uuidv4} from "uuid";
 import {transformToSnakeCase} from "../../../core/entity/entity.tranformer";
 
-export class ModuleEntity implements IEntity {
+export class SampleModuleEntity implements IEntity {
   uuid!: string;
   testField!: string;
 
-  constructor(data: ModuleEntity) {
+  constructor(data: SampleModuleEntity) {
     this.uuid = data.uuid || uuidv4();
     this.testField = data.testField || "";
   }
