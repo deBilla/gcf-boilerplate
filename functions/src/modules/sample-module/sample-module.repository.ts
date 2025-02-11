@@ -1,6 +1,6 @@
 import {FirestoreRepository} from "../../core/firestore/firestore.base";
 import configurations from "../../server-config/configurations";
-import {SampleModuleEntity} from "./entities/sample-module-job.entity";
+import {SampleModuleEntity} from "./entities/sample-module.entity";
 
 export class SampleModuleRepository extends FirestoreRepository<SampleModuleEntity> {
   constructor() {

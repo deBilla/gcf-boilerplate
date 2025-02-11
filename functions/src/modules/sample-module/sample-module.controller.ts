@@ -1,6 +1,6 @@
 import {SampleModuleRepository} from "./sample-module.repository";
 import {SampleModuleRequest} from "./dto/sample-module-request.dto";
-import {SampleModuleEntity} from "./entities/sample-module-job.entity";
+import {SampleModuleEntity} from "./entities/sample-module.entity";
 export class SampleModuleController {
   moduleRepository: SampleModuleRepository;
 
