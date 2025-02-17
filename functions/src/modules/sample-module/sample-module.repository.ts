@@ -4,7 +4,7 @@ import {SampleModuleEntity} from "./entities/sample-module.entity";
 
 export class SampleModuleRepository extends FirestoreRepository<SampleModuleEntity> {
   constructor() {
-    super(configurations().firestore.testTable.dbName, configurations().firestore.testTable.name);
+    super(configurations().firestore.sampleModuleTable.dbName, configurations().firestore.sampleModuleTable.name);
   }
 
   protected docToEntity(

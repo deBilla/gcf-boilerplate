@@ -8,9 +8,6 @@ const httpsOptions: HttpsOptions = {
 export default () => ({
   httpsOptions,
   firestore: {
-    testTable: {
-      name: "test_table",
-      dbName: "test_db",
-    },
+    
   },
 });
