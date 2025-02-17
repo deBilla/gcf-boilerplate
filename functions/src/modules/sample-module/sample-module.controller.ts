@@ -2,33 +2,39 @@ import {SampleModuleRepository} from "./sample-module.repository";
 import {SampleModuleRequest} from "./dto/sample-module-request.dto";
 import {SampleModuleEntity} from "./entities/sample-module.entity";
 export class SampleModuleController {
-  moduleRepository: SampleModuleRepository;
+  sampleModuleRepository: SampleModuleRepository;
 
   constructor() {
-    this.moduleRepository = new SampleModuleRepository();
+    this.sampleModuleRepository = new SampleModuleRepository();
   }
 
-  async createSampleModule(req: SampleModuleRequest) {
-    const module = new SampleModuleEntity({
-      testField: req.test_field,
-    } as SampleModuleEntity);
-    await this.moduleRepository.create(module);
+  async createSampleModule(newSampleModule: SampleModuleRequest) {
+    return (await (this.sampleModuleRepository.create(SampleModuleEntity.fromRequest(newSampleModule)))).toTransformedObject();
+  }
 
-    return module;
+  async updateSampleModule(updatedSampleModule: SampleModuleRequest) {
+    const sampleModule = SampleModuleEntity.fromRequest(updatedSampleModule);
+    return await this.sampleModuleRepository.update(sampleModule);
   }
 
   async deleteSampleModule(uuid: string) {
-    const module = await this.moduleRepository.findOne(uuid);
-    if (!module) throw new Error("<SampleModule> not found in database !!!");
+    const sampleModule = await this.sampleModuleRepository.findOne(uuid);
+    if (!sampleModule) throw new Error("<SampleModule> not found in database !!!");
 
-    await this.moduleRepository.delete(uuid);
+    await this.sampleModuleRepository.delete(uuid);
   }
 
   async getAll() {
-    const modules: SampleModuleEntity[] = await this.moduleRepository.find();
+    const sampleModules: SampleModuleEntity[] = await this.sampleModuleRepository.find();
 
-    if (!modules || modules.length <= 0) return [];
+    if (!sampleModules || sampleModules.length <= 0) return [];
 
-    return modules.map((module: SampleModuleEntity) => module.toTransformedObject());
+    return sampleModules.map((sampleModule: SampleModuleEntity) => sampleModule.toTransformedObject());
+  }
+
+  async getOne(uuid: string) {
+    const sampleModule: SampleModuleEntity = await this.sampleModuleRepository.findOne(uuid);
+
+    return sampleModule.toTransformedObject();
   }
 }

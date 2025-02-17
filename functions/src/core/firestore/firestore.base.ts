@@ -15,7 +15,7 @@ export abstract class FirestoreRepository<T extends IEntity> {
     const document = this.database.doc(
       `${this.collectionName}/${item.getId()}`
     );
-    await document.set(item.toFirestoreObject());
+    await document.set(item.toDatabaseObject());
     return item;
   }
 
@@ -23,7 +23,7 @@ export abstract class FirestoreRepository<T extends IEntity> {
     const document = this.database.doc(
       `${this.collectionName}/${item.getId()}`
     );
-    await document.update(item.toFirestoreObject());
+    await document.update(item.toDatabaseObject());
     return true;
   }
 

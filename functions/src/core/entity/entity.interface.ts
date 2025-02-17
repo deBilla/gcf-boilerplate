@@ -1,4 +1,5 @@
 export interface IEntity {
   getId(): string;
-  toFirestoreObject(): any;
+  toDatabaseObject(): any;
+  toTransformedObject(): any;
 }

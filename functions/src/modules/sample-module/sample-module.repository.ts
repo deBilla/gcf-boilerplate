@@ -7,14 +7,7 @@ export class SampleModuleRepository extends FirestoreRepository<SampleModuleEnti
     super(configurations().firestore.sampleModuleTable.dbName, configurations().firestore.sampleModuleTable.name);
   }
 
-  protected docToEntity(
-    doc: FirebaseFirestore.DocumentSnapshot
-  ): SampleModuleEntity {
-    const metadata = new SampleModuleEntity({
-      uuid: doc.get("uuid") || "",
-      testField: doc.get("test_field") || "",
-    } as SampleModuleEntity);
-
-    return metadata;
+  protected docToEntity(doc: any): SampleModuleEntity {
+    return SampleModuleEntity.fromRequest(doc);
   }
 }
